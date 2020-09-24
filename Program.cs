@@ -1,6 +1,7 @@
 using System;
-
-//variant 8
+using System.Collections.Generic;
+    
+//variant 9
 namespace test
 {
     class MainClass
@@ -27,6 +28,18 @@ namespace test
             else {
                 return false;
             }
+        }
+
+        public static void EquationSolution(double x_0, double E) {
+
+            List<double> x = new List<double>() { };
+            x.Add(x_0);
+
+            for(int i = 0; i < x.Count; i++)
+            {
+                Console.Write(x[i]);
+            }
+
         }
 
 
@@ -85,7 +98,7 @@ namespace test
                 Console.WriteLine("Error! Enter number of function");
             }
 
-
+          
         }
     }
 }
