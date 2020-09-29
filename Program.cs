@@ -30,16 +30,21 @@ namespace test
             }
         }
 
-        public static void EquationSolution(double x_0, double E) {
+        public static int EquationSolution(double x_0, double E) {
+            double x = 0; 
+            double x_prev = x_0;
+            int count = 0;
+            double q = 0;
 
-            List<double> x = new List<double>() { };
-            x.Add(x_0);
-
-            for(int i = 0; i < x.Count; i++)
-            {
-                Console.Write(x[i]);
+           
+            while(q < 3) {
+                x = 0.6 * Math.Exp(-3 * Math.Pow(x_prev, 2)) + 0.5;
+                q = x - x_prev;
+                count++;
+                x = x_prev;
             }
 
+            return count;
         }
 
 
@@ -49,11 +54,12 @@ namespace test
             	"[1] - S \n"  +
             	"[2] - sm \n" +
             	"[3] - Math formila \n" +
-            	"[4] - Triangle \n");
+            	"[4] - Triangle \n" +
+                "[5] - EquationSolution \n");
             byte m = Convert.ToByte(Console.ReadLine());
 
-            if (m == 1) {
-                //-----------------------------------№9 TAB№1
+            if (m == 1) { //-----------------------------------№9 TAB№1
+
                 Console.Write("Enter t: ");
                 double t = Convert.ToDouble(Console.ReadLine());
                 Console.Write("Enter a: ");
@@ -63,15 +69,15 @@ namespace test
                 double res = S(t, a, v_0);
                 Console.WriteLine("S = " + res);
             } 
-            else if(m == 2) {
-                //------------------------------------№14 TAB№1
+            else if(m == 2) { //------------------------------------№14 TAB№1
+               
                 Console.WriteLine("Enter sm: ");
                 int q = Convert.ToInt32(Console.ReadLine());
                 int rev = Reverse(q);
                 Console.WriteLine("Reverse sm to m = " + rev);
             }
-            else if(m == 3) {
-                //------------------------------------№9 TAB№2
+            else if(m == 3) { //------------------------------------№9 TAB№2 
+
                 Console.WriteLine("Enter x: ");
                 double x = Convert.ToDouble(Console.ReadLine());
                 Console.WriteLine("Enter y: ");
@@ -79,8 +85,8 @@ namespace test
                 double formul = Formula(x, y);
                 Console.WriteLine("Result formuls = " + formul);
             }
-            else if(m == 4) {
-                //------------------------------------№1 TAB3
+            else if(m == 4) { //------------------------------------№1 TAB3
+
                 Console.Write("Enter x, y, z: ");
                 double X = Convert.ToDouble(Console.ReadLine());
                 double Y = Convert.ToDouble(Console.ReadLine());
@@ -93,6 +99,14 @@ namespace test
                 else {
                     Console.Write("Triangle not exists!");
                 }
+            }
+            else if(m == 5) { //-------------------------------------№3 TAB4
+
+                Console.Write("Enter x_0 and E: ");
+                double x_0 = Convert.ToDouble(Console.ReadLine());
+                double E = Convert.ToDouble(Console.ReadLine());
+                int p = EquationSolution(x_0, E);
+                Console.WriteLine("Count = " + p);
             }
             else {
                 Console.WriteLine("Error! Enter number of function");
